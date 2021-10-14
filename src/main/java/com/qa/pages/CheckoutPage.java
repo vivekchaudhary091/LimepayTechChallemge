@@ -32,6 +32,9 @@ public class CheckoutPage extends TestBase {
 	@FindBy(xpath="//input[@id='IGMMBVO']")
 	WebElement phoneNumber;
 	
+	@FindBy(xpath="//button[@title='Place Order' and @type='button' and @class='action primary checkout']")
+	WebElement placeOrder;
+	
 	public CheckoutPage() {
 		PageFactory.initElements(driver, this);
 	}
@@ -79,7 +82,10 @@ public class CheckoutPage extends TestBase {
 	 String element3 =element1+element2;
 	 return element3;
 		
-		
+	}
+	
+	public void placeOrder() {
+		placeOrder.click();
 	}
 
 }

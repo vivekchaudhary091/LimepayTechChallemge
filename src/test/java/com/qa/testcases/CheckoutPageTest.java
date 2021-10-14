@@ -42,6 +42,7 @@ public class CheckoutPageTest extends TestBase {
 	String email=checkoutPage.verifyEmailPrepopulatedPrior();
 	System.out.println(email);
 	Assert.assertEquals(email, "tompeter@test.com");
+	driver.findElement(By.xpath("//span[@class='slider round']")).click();
 	}
 	
 	@Test(priority=4)
@@ -54,6 +55,13 @@ public class CheckoutPageTest extends TestBase {
 	String amount=checkoutPage.verifyOneTimePaymentAmount();
 	String totalAmount=driver.findElement(By.xpath("//span[contains(text(),'$27.00')]")).getText();
 	Assert.assertEquals(amount, totalAmount);
+	}
+	
+	@Test(priority=6)
+	public void placeOrderTest() {
+		checkoutPage.placeOrder();
+		String errorText=driver.findElement(By.xpath("")).getText();
+		Assert.assertEquals(errorText, "ERROR:IS REQUIRED");
 	}
 	
 	
