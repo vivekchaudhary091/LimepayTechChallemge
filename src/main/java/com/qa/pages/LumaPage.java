@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.qa.testbase.TestBase;
 
@@ -31,24 +33,32 @@ public class LumaPage extends TestBase {
 		PageFactory.initElements(driver, this);
 	}
 	
-	public CheckoutPage addItemIntoCart() {
+	public CheckoutPage addItemIntoCart(){
 		
-		WebElement element=driver.findElement(By.xpath("//img[@src='http://mage2-firecheckout-osc.tst.limep.net/pub/media/catalog/product/cache/2765542505660baab28ecd555e27366e/m/t/mt07-gray_main_1.jpg']"));
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		WebElement element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[@src='http://mage2-firecheckout-osc.tst.limep.net/pub/media/catalog/product/cache/2765542505660baab28ecd555e27366e/m/t/mt07-gray_main_1.jpg']")));
 		
+		//WebElement element=driver.findElement(By.xpath("//img[@src='http://mage2-firecheckout-osc.tst.limep.net/pub/media/catalog/product/cache/2765542505660baab28ecd555e27366e/m/t/mt07-gray_main_1.jpg']"));
+		
+		//move to image
 		action=new Actions(driver);
 		action.moveToElement(element).build().perform();
 		
+		//move to size of the item
 		action.moveToElement(largeSize).build().perform();
 		largeSize.click();
 		
+		//move to color of the item
 		action.moveToElement(color).build().perform();
 		color.click();
 		
+		//move to addToCart link
 		action.moveToElement(addToCart).build().perform();
 		addToCart.click();
 		
 		cart.click();
 		
+		//move to proceedToCheckout link
 		action.moveToElement(proceedToCheckout).build().perform();
 		proceedToCheckout.click();
 		

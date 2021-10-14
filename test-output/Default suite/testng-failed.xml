@@ -5,6 +5,7 @@
     <classes>
       <class name="com.qa.testcases.LumaPageTest">
         <methods>
+          <include name="tearDown"/>
           <include name="addItemToCart"/>
           <include name="setUp"/>
         </methods>

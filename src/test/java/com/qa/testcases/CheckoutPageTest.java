@@ -20,7 +20,7 @@ public class CheckoutPageTest extends TestBase {
 	}
 	
 	@BeforeMethod
-	public void setUp() {
+	public void setUp() throws InterruptedException {
 		initialization();
 		checkoutPage=new CheckoutPage();
 		lumaPage=new LumaPage();

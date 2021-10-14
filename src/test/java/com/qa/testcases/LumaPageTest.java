@@ -21,10 +21,11 @@ public class LumaPageTest extends TestBase {
 		initialization();
 		lumaPage=new LumaPage();
 		
+		
 	}
 	
 	@Test
-	public void addItemToCart() {
+	public void addItemToCart(){
 		lumaPage.addItemIntoCart();
 		
 		

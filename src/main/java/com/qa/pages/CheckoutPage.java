@@ -47,11 +47,14 @@ public class CheckoutPage extends TestBase {
 		streetAddress.sendKeys("1 Francis Street, New South Wales, 2114");
 		city.sendKeys("Sydney");
 		
+		//select country from dropdown
 		Select select=new Select(driver.findElement(By.xpath("//select[@id='YWD1A3S']")));
 		select.selectByVisibleText("//select[@id='YWD1A3S']//option[contains(text(),'United States')]");
 		
+		//select region from dropdown
 		select=new Select(driver.findElement(By.xpath("select[@id='CAK9F0Q']")));
 		select.selectByVisibleText("//select[@id='CAK9F0Q']//option[contains(text(),'Alaska')]");
+		
 		postalCode.sendKeys("2114");
 		phoneNumber.sendKeys("+61403256771");
 			
