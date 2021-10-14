@@ -31,12 +31,14 @@ public class LumaPage extends TestBase {
 		PageFactory.initElements(driver, this);
 	}
 	
-	public void addItemIntoCart() {
+	public CheckoutPage addItemIntoCart() {
 		
 		WebElement element=driver.findElement(By.xpath("//img[@src='http://mage2-firecheckout-osc.tst.limep.net/pub/media/catalog/product/cache/2765542505660baab28ecd555e27366e/m/t/mt07-gray_main_1.jpg']"));
 		
 		action=new Actions(driver);
-		action.moveToElement(element).moveToElement(largeSize).build().perform();
+		action.moveToElement(element).build().perform();
+		
+		action.moveToElement(largeSize).build().perform();
 		largeSize.click();
 		
 		action.moveToElement(color).build().perform();
@@ -49,5 +51,7 @@ public class LumaPage extends TestBase {
 		
 		action.moveToElement(proceedToCheckout).build().perform();
 		proceedToCheckout.click();
+		
+		return new CheckoutPage();
 	}
 }

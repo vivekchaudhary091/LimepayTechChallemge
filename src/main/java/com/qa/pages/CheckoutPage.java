@@ -73,8 +73,8 @@ public class CheckoutPage extends TestBase {
 	
 	public String verifyOneTimePaymentAmount() {
     
-	String element1=driver.findElement(By.xpath("//th[contains(text(),'Cart Subtotal')]")).getText();
-	  String element2=driver.findElement(By.xpath("//span[contains(text(),'Flat Rate - Fixed')]")).getText();
+	String element1=driver.findElement(By.xpath("//td[@class='amount']//span[@class='price'][contains(text(),'$22.00')]")).getText();
+	  String element2=driver.findElement(By.xpath("//td[@class='amount']//span[@class='price'][contains(text(),'$5.00')]")).getText();
 	  
 	 String element3 =element1+element2;
 	 return element3;

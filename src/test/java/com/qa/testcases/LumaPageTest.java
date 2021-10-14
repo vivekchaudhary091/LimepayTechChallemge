@@ -4,6 +4,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.qa.pages.CheckoutPage;
 import com.qa.pages.LumaPage;
 import com.qa.testbase.TestBase;
 
@@ -25,6 +26,7 @@ public class LumaPageTest extends TestBase {
 	@Test
 	public void addItemToCart() {
 		lumaPage.addItemIntoCart();
+		
 		
 	}
 
