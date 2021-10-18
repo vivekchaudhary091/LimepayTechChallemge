@@ -11,29 +11,65 @@ import com.qa.testbase.TestBase;
 public class CheckoutPage extends TestBase {
 	Select select;
 	
-	@FindBy(xpath="//input[@id='customer-email']")
+	@FindBy(id="customer-email")
 	WebElement email;
 	
-	@FindBy(xpath="//input[@id='O6BQBN8']")
+	@FindBy(id="O6BQBN8")
 	WebElement firstName;
 	
-	@FindBy(xpath="//input[@id='KUWH9XO']")
+	@FindBy(id="KUWH9XO")
 	WebElement lastName;
 	
-	@FindBy(xpath="//input[@id='Y39MMUR']")
+	@FindBy(id="Y39MMUR")
 	WebElement streetAddress;
 	
-	@FindBy(xpath="//input[@id='X433GRP']")
+	@FindBy(id="X433GRP")
 	WebElement city;
 	
-	@FindBy(xpath="//input[@id='IXWABAS']")
+	@FindBy(id="IXWABAS")
 	WebElement postalCode;
 	
-	@FindBy(xpath="//input[@id='IGMMBVO']")
+	@FindBy(id="IGMMBVO")
 	WebElement phoneNumber;
 	
 	@FindBy(xpath="//button[@title='Place Order' and @type='button' and @class='action primary checkout']")
 	WebElement placeOrder;
+	
+	@FindBy(id="lpcheckout")
+	WebElement radioButtoncheck;
+	
+	
+	@FindBy(xpath="//span[@class='slider round']")
+	WebElement togglebutton;
+	
+	
+	@FindBy(id="billing-address-same-as-shipping-shared")
+	WebElement billingAddress;
+	
+	
+	@FindBy(id="lpCustEmail")
+	WebElement emailAddress;
+
+	@FindBy(xpath="(//div[contains(text(),'Error: is required')])[1]")
+	WebElement verifyError;
+	
+	@FindBy(xpath="//td[@class='amount']//span[@class='price'][contains(text(),'$22.00')]")
+	WebElement cartSubTotal;
+	
+	
+	@FindBy(xpath="//td[@class='amount']//span[@class='price'][contains(text(),'$5.00')]")
+	WebElement shippingAmount;
+	
+	
+	@FindBy(xpath="//select[@id='YWD1A3S']//option[contains(text(),'United States')]")
+	WebElement selectUS;
+			
+	@FindBy(xpath="//select[@id='CAK9F0Q']//option[contains(text(),'Alaska')]")
+	WebElement selectAlaska;	
+	
+	@FindBy(xpath="//span[contains(text(),'$27.00')]")
+	WebElement orderTotalAmount;
+	
 	
 	public CheckoutPage() {
 		PageFactory.initElements(driver, this);
@@ -49,11 +85,11 @@ public class CheckoutPage extends TestBase {
 		
 		//select country from dropdown
 		Select select=new Select(driver.findElement(By.xpath("//select[@id='YWD1A3S']")));
-		select.selectByVisibleText("//select[@id='YWD1A3S']//option[contains(text(),'United States')]");
+		select.selectByVisibleText("selectUS");
 		
 		//select region from dropdown
 		select=new Select(driver.findElement(By.xpath("select[@id='CAK9F0Q']")));
-		select.selectByVisibleText("//select[@id='CAK9F0Q']//option[contains(text(),'Alaska')]");
+		select.selectByVisibleText("selectAlaska");
 		
 		postalCode.sendKeys("2114");
 		phoneNumber.sendKeys("+61403256771");
@@ -62,29 +98,43 @@ public class CheckoutPage extends TestBase {
 	
 	public void paymentMethodSelect() {
 		
-		driver.findElement(By.xpath("//input[@id='lpcheckout']")).click();
-		driver.findElement(By.xpath("//span[@class='slider round']")).click();
+		radioButtoncheck.click();
+		togglebutton.click();
+		
+	}
+	
+	public void toggleUnchecked()
+	{
+		togglebutton.click();
 		
 	}
 	
 	public void billingAddress() {
-		driver.findElement(By.xpath("//input[@id='lpcheckout']")).click();
+		billingAddress.click();
 	}
 	
 	public String verifyEmailPrepopulatedPrior() {
 		
-	String text=driver.findElement(By.xpath("//input[@name='email']")).getText();
+	String text=emailAddress.getText();
 		return text;
 	}
 	
 	public String verifyOneTimePaymentAmount() {
-    
-	String element1=driver.findElement(By.xpath("//td[@class='amount']//span[@class='price'][contains(text(),'$22.00')]")).getText();
-	  String element2=driver.findElement(By.xpath("//td[@class='amount']//span[@class='price'][contains(text(),'$5.00')]")).getText();
+	String element1=cartSubTotal.getText();
+	  String element2=shippingAmount.getText();
 	  
 	 String element3 =element1+element2;
 	 return element3;
-		
+	}
+	
+	public String verifyTotalAmount() {
+		String totalAmount=orderTotalAmount.getText();
+		return totalAmount;
+	}
+	
+	public String errorVerify() {
+		String errorMessage=verifyError.getText();
+		return errorMessage;
 	}
 	
 	public void placeOrder() {

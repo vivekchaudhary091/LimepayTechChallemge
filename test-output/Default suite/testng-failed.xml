@@ -3,13 +3,17 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.qa.testcases.LumaPageTest">
+      <class name="com.qa.testcases.CheckoutPageTest">
         <methods>
-          <include name="tearDown"/>
-          <include name="addItemToCart"/>
+          <include name="fillShippingAddressDetails"/>
           <include name="setUp"/>
+          <include name="paymentMethodSelectTest"/>
+          <include name="placeOrderTest"/>
+          <include name="verifyOneTimePaymentTest"/>
+          <include name="verifyEmailTest"/>
+          <include name="billingAddressTest"/>
         </methods>
-      </class> <!-- com.qa.testcases.LumaPageTest -->
+      </class> <!-- com.qa.testcases.CheckoutPageTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

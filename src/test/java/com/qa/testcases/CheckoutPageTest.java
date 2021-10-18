@@ -13,7 +13,8 @@ import com.qa.testbase.TestBase;
 public class CheckoutPageTest extends TestBase {
 	
 	public LumaPage lumaPage;
-	public CheckoutPage checkoutPage;
+	public CheckoutPage checkoutPage ;
+	
 	
 	public CheckoutPageTest() {
 		super();
@@ -22,9 +23,9 @@ public class CheckoutPageTest extends TestBase {
 	@BeforeMethod
 	public void setUp() throws InterruptedException {
 		initialization();
-		checkoutPage=new CheckoutPage();
-		lumaPage=new LumaPage();
-		checkoutPage=lumaPage.addItemIntoCart();
+	  checkoutPage=new CheckoutPage();
+      lumaPage=new LumaPage();
+      checkoutPage=lumaPage.addItemIntoCart();
 	}
 	
 	@Test(priority=1)
@@ -42,7 +43,8 @@ public class CheckoutPageTest extends TestBase {
 	String email=checkoutPage.verifyEmailPrepopulatedPrior();
 	System.out.println(email);
 	Assert.assertEquals(email, "tompeter@test.com");
-	driver.findElement(By.xpath("//span[@class='slider round']")).click();
+	checkoutPage.toggleUnchecked();
+	
 	}
 	
 	@Test(priority=4)
@@ -53,14 +55,14 @@ public class CheckoutPageTest extends TestBase {
 	@Test(priority=5)
 	public void verifyOneTimePaymentTest() {
 	String amount=checkoutPage.verifyOneTimePaymentAmount();
-	String totalAmount=driver.findElement(By.xpath("//span[contains(text(),'$27.00')]")).getText();
+	String totalAmount=checkoutPage.verifyTotalAmount();
 	Assert.assertEquals(amount, totalAmount);
 	}
 	
 	@Test(priority=6)
 	public void placeOrderTest() {
 		checkoutPage.placeOrder();
-		String errorText=driver.findElement(By.xpath("")).getText();
+		String errorText=checkoutPage.errorVerify();
 		Assert.assertEquals(errorText, "ERROR:IS REQUIRED");
 	}
 	
