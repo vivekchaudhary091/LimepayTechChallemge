@@ -1,6 +1,7 @@
 package com.qa.testbase;
 
 import java.io.FileInputStream;
+
 import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -46,11 +47,20 @@ public class TestBase {
 		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().pageLoadTimeout(TestUtil.PAGE_LOAD_TIME_OUT, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_TIME_OUT, TimeUnit.SECONDS);
-		driver.get(prop.getProperty("url"));
-			
-		
-		
 		
 	}
-
+	
+	public void lumaPageURL() {
+		driver.get(prop.getProperty("url"));
+	}
+	
+	public void generateToken() {
+		driver.get(prop.getProperty("url_generate_token"));
+		
+	}
+	
+	public void afterTokenGenerate() {
+		driver.get(prop.getProperty("url_after_token_generate"));
+	}
+   
 }
