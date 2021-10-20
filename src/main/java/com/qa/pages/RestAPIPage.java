@@ -3,15 +3,6 @@ package com.qa.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-
-import io.restassured.RestAssured;
-import io.restassured.http.Header;
-import io.restassured.http.Headers;
-import io.restassured.response.Response;
-import io.restassured.response.ValidatableResponse;
-import io.restassured.specification.RequestSpecification;
-
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
@@ -32,9 +23,6 @@ public class RestAPIPage extends TestBase{
 	
 	@FindBy(xpath="//div[@class='recaptcha-checkbox-border']")
 	WebElement generateTokenButton;
-	
-	
-	
 	
 	
 	public RestAPIPage() {
