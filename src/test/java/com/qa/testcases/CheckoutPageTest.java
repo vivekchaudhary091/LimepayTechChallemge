@@ -1,6 +1,5 @@
 package com.qa.testcases;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -21,8 +20,9 @@ public class CheckoutPageTest extends TestBase {
 	}
 	
 	@BeforeMethod
-	public void setUp() throws InterruptedException {
+	public void setUp() {
 		initialization();
+		loginURL();
 	  checkoutPage=new CheckoutPage();
       lumaPage=new LumaPage();
       checkoutPage=lumaPage.addItemIntoCart();

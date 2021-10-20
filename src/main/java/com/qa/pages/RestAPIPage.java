@@ -3,11 +3,12 @@ package com.qa.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.exceptions.UnirestException;
 import com.qa.testbase.TestBase;
-
+import io.restassured.RestAssured;
+import io.restassured.http.Method;
+import io.restassured.response.Response;
+import io.restassured.response.ResponseBody;
+import io.restassured.specification.RequestSpecification;
 
 
 public class RestAPIPage extends TestBase{
@@ -34,66 +35,63 @@ public class RestAPIPage extends TestBase{
 	fullName.sendKeys(name);
 	emailAddress.sendKeys(email);
 	
-	//switch to frame to click recaptcha checkbox
-	driver.switchTo().frame("");
 	recaptcha.click();
 	
-	//switch to frame to click on generate button
-	driver.switchTo().frame("");
 	generateTokenButton.click();
 	
 	}
 	
 	//Get Token to move next step
-	public void toGetAccessOfToken() throws UnirestException {
+	public void toGetAccessOfToken(){
+	    
+	    RestAssured.baseURI = "https://www.universal-tutorial.com/api/getaccesstoken";
+  		RequestSpecification httpRequest = RestAssured.given();
+  		httpRequest.header("Accept","application/json");
+  		httpRequest.header("api-token", "F2oBH_3_Sugw8-jZ7qPsXV_WwI4wJZQ2ztajdZVwjx2lx4D1N-X61SnrmsffjEKCAvY");
+  		httpRequest.header("user-email", "test12345@test.com");
+  		
+  		Response response = httpRequest.request(Method.GET, RestAssured.baseURI);
 		
-		 String url="https://www.universal-tutorial.com/api/getaccesstoken";
-	     JsonNode body=Unirest.get(url)
-		.header("Accept","application/json")
-		.header("api-token", "yL2i_JyB5Mi8jToZCgGfA5r7pnUBdfIF-ilNqET70dN5jo1mkq83biCqIGofpikPP_k")
-		.header("user-email", "test1234@test.com")
-		.asJson()
-		.getBody();
-	    System.out.println(body);
+
+		String responseBody = response.getBody().asString();
+		System.out.println("Response Body is =>  " + responseBody);
+
 	   
 	
 	}
 	
 	//To get states by using bearer token
-	public void toGetLocation() throws UnirestException  {
+	public int toGetLocation() {
+	    
+	    RestAssured.baseURI = "https://www.universal-tutorial.com/api/states/India";
+  		RequestSpecification httpRequest = RestAssured.given();
+  		httpRequest.header("Accept","application/json");
+  		httpRequest.header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJ0ZXN0MTIzNDVAdGVzdC5jb20iLCJhcGlfdG9rZW4iOiJGMm9CSF8zX1N1Z3c4LWpaN3FQc1hWX1d3STR3SlpRMnp0YWpkWlZ3angybHg0RDFOLVg2MVNucm1zZmZqRUtDQXZZIn0sImV4cCI6MTYzNDgxNTE5OX0.axu6XOvMGjrdkjUpdn1GO6jA53DIDjQEerjXzbuxuOs");
+  		
+  		Response response = httpRequest.request(Method.GET, RestAssured.baseURI);
+  		
+  		
+  		int code=response.statusCode();
 		
-		String url="https://www.universal-tutorial.com/api/states/India";
-	    JsonNode body=Unirest.get(url)
-		.header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJ0ZXN0MTIzNEB0ZXN0LmNvbSIsImFwaV90b2tlbiI6InlMMmlfSnlCNU1pOGpUb1pDZ0dmQTVyN3BuVUJkZklGLWlsTnFFVDcwZE41am8xbWtxODNiaUNxSUdvZnBpa1BQX2sifSwiZXhwIjoxNjM0NzIzNDc0fQ.q3i7iuvl_LP0XBYbOR1vzRdFUIXeG1A_uKmpPW5Qp1Y")
-	    .header("Accept", "application/json")
-	    .asJson()
-	    .getBody();
-	    System.out.println(body);
+
+		String responseBody = response.getBody().asString();
+		System.out.println("Response Body is =>  " + responseBody);
+		
+		return code;
 	}
 	
 	//Verify response contains state_name Dadar and Nagar Haveli
-	public String verifyState() throws UnirestException {
+	public String verifyState(){
 
-		String body = Unirest.get("https://www.universal-tutorial.com/api/states/India")
-				 .asString()
-				 .getBody();
-		System.out.println(body);
-		return body;
-		
-		//{"state_name":"Dadra and Nagar Haveli"}
-	}
+		RestAssured.baseURI = "https://www.universal-tutorial.com/api/states/India";
+		RequestSpecification httpRequest = RestAssured.given();
+		Response response = httpRequest.request(Method.GET, RestAssured.baseURI);
 	
-	//verify Response 200
-     public int verifyResponse() throws UnirestException {
-		
-		int code = Unirest.get("https://www.universal-tutorial.com/api/states/India")
-				.asString()
-				.getStatus();
-		System.out.println(code);
-		return code;
-	
-	}
-	
+		ResponseBody body = response.getBody();
 
+
+		String bodyAsString = body.asString();
+		return bodyAsString;
+	}
 
 }

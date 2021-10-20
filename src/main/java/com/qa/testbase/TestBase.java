@@ -30,13 +30,17 @@ public class TestBase {
 	public void initialization() {
 		
 		String browser=prop.getProperty("browser");
+		
 		if(browser.equalsIgnoreCase("firefox")){
-			System.setProperty("webdriver.gecko.driver", "c:\\geckodriver\\geckodriver.exe");
+			String path = System.getProperty("user.dir");
+			System.out.println(path);
+			System.setProperty("webdriver.gecko.driver", path+"\\drivers\\firefoxdriver\\geckodriver.exe");
 			driver=new FirefoxDriver();
 		
 		}else if(browser.equalsIgnoreCase("chrome")){
-			
-			System.setProperty("webdriver.chrome.driver", "c:\\chromedriver\\chromedriver.exe");
+			String path = System.getProperty("user.dir");
+			System.out.println(path);
+			System.setProperty("webdriver.chrome.driver", path+"\\drivers\\chromedriver\\chromedriver.exe");
 			driver=new ChromeDriver();
 		}
 		
@@ -44,8 +48,12 @@ public class TestBase {
 		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().pageLoadTimeout(TestUtil.PAGE_LOAD_TIME_OUT, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_TIME_OUT, TimeUnit.SECONDS);
-		driver.get(prop.getProperty("url"));
 		
+		
+	}
+	
+	public void loginURL() {
+		driver.get(prop.getProperty("url"));
 	}
 	
 	

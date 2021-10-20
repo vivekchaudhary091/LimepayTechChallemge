@@ -20,6 +20,7 @@ public class LumaPageTest extends TestBase {
 	@BeforeMethod
 	public void setUp() {
 		initialization();
+		loginURL();
 		lumaPage=new LumaPage();
 		                     
 		
@@ -34,7 +35,8 @@ public class LumaPageTest extends TestBase {
 
 	@AfterMethod
 	public void tearDown() {
-		driver.quit();
+		driver.close();
+		//driver.quit();
 	}
 
 }
