@@ -5,6 +5,7 @@
 <classes>
 <class name="com.qa.testcases.LumaPageTest"/>
 <class name="com.qa.testcases.CheckoutPageTest"/>
+<class name="com.qa.testcases.RestAPIPageTest"/>
 </classes>
 </test>
 </suite>
