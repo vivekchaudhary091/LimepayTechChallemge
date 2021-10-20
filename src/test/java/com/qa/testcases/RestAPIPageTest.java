@@ -24,18 +24,18 @@ public class RestAPIPageTest extends TestBase{
 		restAPITest=new RestAPIPage();
 	}
 	
-	@Test(enabled = false)
+	@Test
 	public void generateTokenTest() {
 		restAPITest.generateToken(prop.getProperty("name"), prop.getProperty("email"));
 	}
 	
-	@Test(enabled = false)
+	@Test
 	public void getAccessTokenTest() throws UnirestException {
 		restAPITest.toGetAccessOfToken();
 		
 	}
 	
-	@Test(enabled = false)
+	@Test
 	public void toGetLocationTest() throws UnirestException  {
 		restAPITest.toGetLocation();
 	}
@@ -52,7 +52,8 @@ public class RestAPIPageTest extends TestBase{
 	}
 	
 	
-	  @AfterMethod public void tearDown() { 
+	  @AfterMethod 
+	  public void tearDown() { 
 		  driver.quit(); 
 		  }
 	 

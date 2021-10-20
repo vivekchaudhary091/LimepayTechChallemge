@@ -3,12 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.qa.testcases.RestAPIPageTest">
+      <class name="com.qa.testcases.LumaPageTest">
         <methods>
+          <include name="tearDown"/>
+          <include name="addItemToCart"/>
           <include name="setUp"/>
-          <include name="verifyStateTest"/>
         </methods>
-      </class> <!-- com.qa.testcases.RestAPIPageTest -->
+      </class> <!-- com.qa.testcases.LumaPageTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

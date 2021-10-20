@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="3" total="4" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-10-19T18:42:11 IST" name="Default suite" finished-at="2021-10-19T18:43:13 IST" duration-ms="61776">
+  <suite started-at="2021-10-20T13:43:27 IST" name="Default suite" finished-at="2021-10-20T13:43:48 IST" duration-ms="20938">
     <groups>
     </groups>
-    <test started-at="2021-10-19T18:42:11 IST" name="Default test" finished-at="2021-10-19T18:43:13 IST" duration-ms="61776">
-      <class name="com.qa.testcases.RestAPIPageTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.qa.testcases.RestAPIPageTest@533bda92]" started-at="2021-10-19T18:42:12 IST" name="setUp" finished-at="2021-10-19T18:42:12 IST" duration-ms="55" status="PASS">
+    <test started-at="2021-10-20T13:43:27 IST" name="Default test" finished-at="2021-10-20T13:43:48 IST" duration-ms="20938">
+      <class name="com.qa.testcases.LumaPageTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.qa.testcases.LumaPageTest@5524cca1]" started-at="2021-10-20T13:43:27 IST" name="setUp" finished-at="2021-10-20T13:43:47 IST" duration-ms="20187" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="verifyStateTest()[pri:0, instance:com.qa.testcases.RestAPIPageTest@533bda92]" started-at="2021-10-19T18:42:12 IST" name="verifyStateTest" finished-at="2021-10-19T18:43:13 IST" duration-ms="61617" status="FAIL">
-          <exception class="com.mashape.unirest.http.exceptions.UnirestException">
-            <message>
-              <![CDATA[java.net.SocketTimeoutException: Read timed out]]>
-            </message>
+        <test-method signature="addItemToCart()[pri:0, instance:com.qa.testcases.LumaPageTest@5524cca1]" started-at="2021-10-20T13:43:47 IST" name="addItemToCart" finished-at="2021-10-20T13:43:47 IST" duration-ms="25" status="FAIL">
+          <exception class="java.lang.NullPointerException">
             <full-stacktrace>
-              <![CDATA[com.mashape.unirest.http.exceptions.UnirestException: java.net.SocketTimeoutException: Read timed out
-at com.mashape.unirest.http.HttpClientHelper.request(HttpClientHelper.java:143)
-at com.mashape.unirest.request.BaseRequest.asString(BaseRequest.java:56)
-at com.qa.pages.RestAPIPage.verifyState(RestAPIPage.java:90)
-at com.qa.testcases.RestAPIPageTest.verifyStateTest(RestAPIPageTest.java:47)
+              <![CDATA[java.lang.NullPointerException
+at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:787)
+at org.openqa.selenium.support.ui.FluentWait.<init>(FluentWait.java:96)
+at org.openqa.selenium.support.ui.WebDriverWait.<init>(WebDriverWait.java:71)
+at org.openqa.selenium.support.ui.WebDriverWait.<init>(WebDriverWait.java:45)
+at com.qa.pages.LumaPage.addItemIntoCart(LumaPage.java:39)
+at com.qa.testcases.LumaPageTest.addItemToCart(LumaPageTest.java:30)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:78)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -50,45 +49,17 @@ at org.testng.TestNG.run(TestNG.java:1031)
 at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-Caused by: java.net.SocketTimeoutException: Read timed out
-at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:283)
-at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:309)
-at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:350)
-at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:803)
-at java.base/java.net.Socket$SocketInputStream.read(Socket.java:976)
-at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:478)
-at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(SSLSocketInputRecord.java:472)
-at java.base/sun.security.ssl.SSLSocketInputRecord.bytesInCompletePacket(SSLSocketInputRecord.java:70)
-at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1454)
-at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1060)
-at org.apache.http.impl.conn.LoggingInputStream.read(LoggingInputStream.java:84)
-at org.apache.http.impl.io.SessionInputBufferImpl.streamRead(SessionInputBufferImpl.java:137)
-at org.apache.http.impl.io.SessionInputBufferImpl.fillBuffer(SessionInputBufferImpl.java:153)
-at org.apache.http.impl.io.SessionInputBufferImpl.readLine(SessionInputBufferImpl.java:282)
-at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:138)
-at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:56)
-at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:259)
-at org.apache.http.impl.DefaultBHttpClientConnection.receiveResponseHeader(DefaultBHttpClientConnection.java:163)
-at org.apache.http.impl.conn.CPoolProxy.receiveResponseHeader(CPoolProxy.java:165)
-at org.apache.http.protocol.HttpRequestExecutor.doReceiveResponse(HttpRequestExecutor.java:273)
-at org.apache.http.protocol.HttpRequestExecutor.execute(HttpRequestExecutor.java:125)
-at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:272)
-at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:185)
-at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
-at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:111)
-at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
-at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
-at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:108)
-at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
-at com.mashape.unirest.http.HttpClientHelper.request(HttpClientHelper.java:138)
-... 31 more
 ]]>
             </full-stacktrace>
-          </exception> <!-- com.mashape.unirest.http.exceptions.UnirestException -->
+          </exception> <!-- java.lang.NullPointerException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyStateTest -->
-      </class> <!-- com.qa.testcases.RestAPIPageTest -->
+        </test-method> <!-- addItemToCart -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.qa.testcases.LumaPageTest@5524cca1]" started-at="2021-10-20T13:43:47 IST" name="tearDown" finished-at="2021-10-20T13:43:48 IST" duration-ms="590" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.qa.testcases.LumaPageTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
